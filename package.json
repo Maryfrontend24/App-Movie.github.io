@@ -14,7 +14,7 @@
     "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix --color",
     "format": "prettier ./src --write",
     "precommit": "lint-staged",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "browserslist": {
     "production": [
@@ -61,7 +61,7 @@
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,scss,md,json}": [
       "prettier --write",
-      "git add"
+      "eslint --fix"
     ]
   }
 }
