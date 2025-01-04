@@ -1,0 +1,135 @@
+body {
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+#root {
+  max-width: 1010px;
+  margin: 0 auto;
+  padding-left: 36px;
+  padding-right: 36px;
+  padding-top: 32px;
+  box-sizing: border-box;
+}
+.rowHeader {
+  color: black;
+}
+
+:where(.css-dev-only-do-not-override-49qm).ant-layout-header {
+  background: #fff !important;
+}
+:where(.css-dev-only-do-not-override-49qm).ant-layout {
+  background: #fff !important;
+}
+
+:where(.css-dev-only-do-not-override-49qm).ant-radio-group {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+:where(.css-dev-only-do-not-override-49qm).ant-input-outlined {
+  margin-bottom: 10px;
+}
+main {
+  margin-top: 72px;
+}
+
+.movieItem {
+  width: 451px;
+  max-height: 281px;
+  display: flex;
+}
+h3 {
+  margin: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  row-gap: 36px;
+  column-gap: 20px;
+}
+.movieItem {
+  position: relative;
+}
+.movieInfo {
+  align-items: center;
+  padding-top: 12px;
+  height: fit-content;
+}
+.movieText {
+  overflow: hidden; /* Обрезать текст */
+  text-overflow: ellipsis;
+  white-space: wrap;
+
+}
+.description {
+  padding-right: 20px;
+}
+.movieItem img {
+  width: 183px;
+  margin-right: 20px;
+  height: 281px;
+}
+
+:where(.css-dev-only-do-not-override-49qm).ant-pagination
+  .ant-pagination-options-size-changer {
+  display: none;
+}
+
+:where(.css-dev-only-do-not-override-49qm).ant-layout-footer {
+  background: #fff !important;
+}
+
+.hiddenText {
+  overflow: hidden;
+}
+
+.ant-rate {
+  display: inline-block;
+  position: absolute;
+  width: 239px !important;
+  text-align: center;
+  font-size: 16px !important;
+  display: block !important;
+  bottom: 20px;
+  right: 12px;
+}
+
+div.ant-tabs-nav:before {
+  width: 120px !important;
+  justify-content: center !important;
+  left: 44% !important;
+}
+
+.voteAverageBorder {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px !important;
+  width: 30px;
+  height: 30px;
+  max-width: 30px;
+  max-height: 30px;
+}
+.ant-tag.genreMovie {
+  margin-right: 3px !important;
+}
+.ant-tag.genreMovie:last-child {
+  margin-right: 0;
+}
+
+.ant-card-body{
+  margin-right: 0;
+}
+
+@media (max-width: 1024px) {
+  .grid{
+    grid-template-columns: 1fr;
+  }
+
+}

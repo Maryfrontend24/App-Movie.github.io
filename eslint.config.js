@@ -12,7 +12,13 @@ import eslintImportPlugin from 'eslint-plugin-import';
 
 export default [
   {
-    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js', '**/*.config.js'],
+    ignores: [
+      'dist',
+      'node_modules',
+      'coverage',
+      'eslint.config.js',
+      '**/*.config.js',
+    ],
   },
   {
     files: ['**/*.{js,jsx}'],
@@ -44,10 +50,13 @@ export default [
       ...eslintConfigPrettier.rules,
 
       semi: 'error',
-      'prefer-const': 'error',
-
       'react/jsx-no-target-blank': 'off',
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+
+      'prefer-const': 'error',
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
 ];
