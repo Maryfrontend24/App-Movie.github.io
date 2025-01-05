@@ -60,8 +60,8 @@ const CardMovie = ({ movie, sessionId, movieId }) => {
     vote_average === 0 || vote_average === 10
       ? selectedStarsCount === 0
         ? '0' // если selectedStarsCount === 0, показываем "0"
-        : selectedStarsCount.toFixed(0) // иначе округляем selectedStarsCount до целого числа
-      : selectedStarsCount.toFixed(1); // для всех остальных случаев, округляем до 1 знака после запятой
+        : selectedStarsCount.toFixed(0)
+      : selectedStarsCount.toFixed(1);
 
   const getColorAverage = (formattedVoteAverage) => {
     if (formattedVoteAverage < 3) {
@@ -87,7 +87,6 @@ const CardMovie = ({ movie, sessionId, movieId }) => {
   const baseUrl = `https://image.tmdb.org/t/p/original`;
 
   const handleRateChange = async (value) => {
-    // Обновляем состояние локально
     setSelectedStarsCount(value);
 
     if (!sessionId) {
@@ -112,7 +111,7 @@ const CardMovie = ({ movie, sessionId, movieId }) => {
       const response = await axios.post(
         url,
         {
-          value: value, // Отправляем значение как число
+          value: value,
         },
         {
           headers: headers,
@@ -120,7 +119,6 @@ const CardMovie = ({ movie, sessionId, movieId }) => {
       );
 
       if (response.status >= 200 && response.status < 300) {
-        // console.log('Оценка успешно добавлена:', response.data, value);
         alert('Оценка успешно добавлена!');
 
         // Обновляем локальное состояние только если новое значение рейтинга отличается

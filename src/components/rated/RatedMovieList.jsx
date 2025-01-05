@@ -35,7 +35,7 @@ const RatedMovieList = ({ sessionId, page }) => {
     } catch (err) {
       setError(err.message || 'Произошла ошибка при загрузке фильмов');
     } finally {
-      setLoading(false); // Устанавливаем загрузку в false после завершения
+      setLoading(false);
     }
   };
 
@@ -44,7 +44,7 @@ const RatedMovieList = ({ sessionId, page }) => {
     if (sessionId) {
       getRatedList();
     }
-  }, [sessionId, page]); // Выполняем запрос при изменении sessionId или page
+  }, [sessionId, page]);
 
   // Обработка состояния загрузки
   if (loading) {
