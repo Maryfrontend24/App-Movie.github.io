@@ -56,6 +56,7 @@ const createSessionId = async () => {
       const sessionId = response.data.guest_session_id;
 
       // Сохраняем sessionId в localStorage
+      localStorage.setItem('guest_session_id', sessionId);
 
       console.log('Сессионный ID:', sessionId);
       return sessionId;

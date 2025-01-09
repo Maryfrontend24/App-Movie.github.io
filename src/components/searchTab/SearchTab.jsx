@@ -4,26 +4,58 @@ import PaginationMovies from '../pagination/PaginationMovies.jsx';
 import SearchPanel from '../search/SearchPanel.jsx';
 // eslint-disable-next-line no-unused-vars
 import { Spin, Layout } from 'antd';
-import { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import CardsMovieList from '../cardsList/CardsMovieList.jsx';
 import { DataContext } from '../../context/DataContext.jsx';
+import useDebounce from '../../useDebounce.jsx';
 
-const SearchTab = ({
-  searchValue,
-  setSearchValue,
-  loading,
-  movies,
-  errorMessage,
-  totalPages,
-  debouncedSearchValue,
-  page,
-  onChange,
-  sessionId,
-}) => {
+const SearchTab = ({ sessionId, page, setPage, movies, setMovies, onChange, searchValue, setSearchValue }) => {
   const [selectedRating, setSelectedRating] = useState(0);
-  // eslint-disable-next-line no-unused-vars
-  const { genres } = useContext(DataContext);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [totalPages, setTotalPages] = useState(0);
+  const debouncedSearchValue = useDebounce(searchValue, 1000);
+
+
+  const apiKey = '42c8d364cfc2f9ab1d8bdafe10e1b95e';
+
+  const getMovieRequest = async (searchValue) => {
+    setLoading(true);
+    const url = `https://api.themoviedb.org/3/search/movie?query=${searchValue}&include_adult=false&language=en-US&api_key=${apiKey}&page=${page}`;
+    console.log(url);
+    try {
+      const response = await fetch(url);
+      const responseJson = await response.json();
+      console.log(responseJson);
+
+      if (responseJson.results) {
+        setMovies(responseJson.results);
+        setTotalPages(responseJson['total_pages']);
+        if (responseJson['total_pages'] < page) {
+          setPage(1);
+        }
+      } else {
+        // Если возврат не содержит результатов
+        setErrorMessage('Movies not found :(');
+      }
+    } catch (errorMessage) {
+      console.error('Error:', errorMessage);
+      setErrorMessage('Error! Please try again later :(');
+    } finally {
+      setLoading(false); // Устанавливаем загрузку в false в любом случае
+    }
+  };
+
+  useEffect(() => {
+    if (debouncedSearchValue) {
+      getMovieRequest(debouncedSearchValue);
+    } else {
+      setMovies([]); // Очищаем фильмы при пустом поисковом запросе
+      setTotalPages(0); // Сбрасываем общее количество страниц
+    }
+  }, [debouncedSearchValue, page]);
+
 
   return (
     <div>
@@ -33,15 +65,17 @@ const SearchTab = ({
       ) : (
         <>
           <CardsMovieList
+            selectedRating={selectedRating}
             movies={movies}
+            page={page}
+            totalPages={totalPages}
+            setPage={setPage}
             debouncedSearchValue={debouncedSearchValue}
             sessionId={sessionId}
-            setSelectedRating={setSelectedRating}
             searchValue={searchValue}
             loading={loading}
             setSearchValue={setSearchValue}
             errorMessage={errorMessage}
-            selectedRating={selectedRating}
           />
           <Layout.Footer>
             {!!searchValue && (

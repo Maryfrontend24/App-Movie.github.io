@@ -1,14 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import { Pagination } from 'antd';
 
-const PaginationMovies = (props) => {
+const PaginationMovies = ({onChange, total, current}) => {
   return (
     <Pagination
       hideOnSinglePage={true}
       align="center"
-      total={props.total}
-      onChange={props.onChange}
-      current={props.current}
+      total={total}
+      current={current}
+      onChange={onChange}
     />
   );
 };
