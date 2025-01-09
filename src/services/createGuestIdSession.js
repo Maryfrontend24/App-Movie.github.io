@@ -62,7 +62,7 @@ const createSessionId = async () => {
       return sessionId;
     } else {
       console.error('Не удалось создать гостевую сессию:', response.status);
-      throw new Error(`Failed to create guest session: ${response.status}`);
+      // throw new Error(`Failed to create guest session: ${response.status}`);
     }
   } catch (error) {
     console.error(

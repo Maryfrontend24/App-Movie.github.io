@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
-import { Layout, Card, Spin, Alert, Typography } from 'antd';
+import { Layout, Spin, Typography } from 'antd';
 // eslint-disable-next-line no-unused-vars
 import CardMovie from '../card/CardMovie.jsx';
 

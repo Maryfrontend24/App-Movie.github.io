@@ -1,8 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Input } from 'antd';
 
-
-
 const SearchPanel = (props) => {
   const handleChange = (event) => {
     const value = event.target.value;

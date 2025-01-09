@@ -4,19 +4,25 @@ import PaginationMovies from '../pagination/PaginationMovies.jsx';
 import SearchPanel from '../search/SearchPanel.jsx';
 // eslint-disable-next-line no-unused-vars
 import { Spin, Layout } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import CardsMovieList from '../cardsList/CardsMovieList.jsx';
-import { DataContext } from '../../context/DataContext.jsx';
 import useDebounce from '../../useDebounce.jsx';
 
-const SearchTab = ({ sessionId, page, setPage, movies, setMovies, onChange, searchValue, setSearchValue }) => {
-  const [selectedRating, setSelectedRating] = useState(0);
+const SearchTab = ({
+  sessionId,
+  page,
+  setPage,
+  movies,
+  setMovies,
+  onChange,
+  searchValue,
+  setSearchValue,
+}) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [totalPages, setTotalPages] = useState(0);
   const debouncedSearchValue = useDebounce(searchValue, 1000);
-
 
   const apiKey = '42c8d364cfc2f9ab1d8bdafe10e1b95e';
 
@@ -56,7 +62,6 @@ const SearchTab = ({ sessionId, page, setPage, movies, setMovies, onChange, sear
     }
   }, [debouncedSearchValue, page]);
 
-
   return (
     <div>
       <SearchPanel searchValue={searchValue} setSearchValue={setSearchValue} />
@@ -65,7 +70,6 @@ const SearchTab = ({ sessionId, page, setPage, movies, setMovies, onChange, sear
       ) : (
         <>
           <CardsMovieList
-            selectedRating={selectedRating}
             movies={movies}
             page={page}
             totalPages={totalPages}

@@ -13,8 +13,6 @@ const CardsMovieList = ({
   setSelectedStarsCount,
   debouncedSearchValue,
 }) => {
-
-
   const [showNotFound, setShowNotFound] = useState(false);
   const isSearchPerformed = debouncedSearchValue.length > 0;
   useEffect(() => {
